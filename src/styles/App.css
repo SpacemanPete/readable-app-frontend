@@ -11,4 +11,13 @@
 
 .App-title {
   padding: 10px 30px;
+  display: inline-block;
+}
+
+img.App-logo {
+  max-height: 57px;
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 15%;
+  padding: 8px;
 }
