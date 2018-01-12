@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import logo from '../logo.png'
 import '../styles/App.css'
 import { Route, Link } from 'react-router-dom'
+import CategoriesList from './CategoriesList'
 
 class App extends Component {
   render() {
@@ -15,15 +16,7 @@ class App extends Component {
           <Link to="/" className="font_large" >Home</Link>
           <Link to="add-post" className="font_large" >Add new post</Link>
         </nav>
-        <aside id="categories" >
-          <ul>
-            <li>Category</li>
-            <li>Category</li>
-            <li>Category</li>
-            <li>Category</li>
-            <li>Category</li>
-          </ul>
-        </aside>
+        <CategoriesList />
         <section id="content">
           <Route exact path="/" render={() => (
             <p>Here we render all the post content</p>
