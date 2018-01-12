@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getAllCategories } from '../actions'
+import { fetchCategories } from '../actions'
 
 class CategoriesList extends Component {
 
@@ -9,13 +9,12 @@ class CategoriesList extends Component {
   }
 
   render() {
-    // const catList= this.props.catList
+    const catList= this.props.catList
 
-    console.log('Props', this.props)
+    console.log(catList)
     return (
       <aside id="categories" >
         <ul>
-
         </ul>
       </aside>
     )
@@ -24,7 +23,7 @@ class CategoriesList extends Component {
 }
 
 function mapStateToProps( store ) {
-  const catList = store.categories
+  const catList = store.categories.categories
   return {
     catList
   }
@@ -32,7 +31,7 @@ function mapStateToProps( store ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    fetchCatList: () => dispatch(getAllCategories())
+    fetchCatList: () => dispatch(fetchCategories())
   }
 }
 

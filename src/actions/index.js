@@ -5,16 +5,17 @@ import * as ReadableAPI from '../utils/api'
  *  CATEGORY RELATED ACTIONS
  * 
 */
-export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES'
+export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
 
-export function getAllCategories() {
-  return {
-    type: GET_ALL_CATEGORIES,
-    categories: ReadableAPI.getAllCategories()
-      .then( response => response.json )
-  }
-}
-
+export const fetchCategories = () => dispatch => (
+  ReadableAPI
+    .getAllCategories()
+    .then(categories => dispatch(receiveCategories(categories)))
+)
+export const receiveCategories = categories => ({
+  type: RECEIVE_CATEGORIES,
+  categories
+})
 
 
 /**
