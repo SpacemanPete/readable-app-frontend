@@ -11,10 +11,7 @@ export function getAllCategories() {
   return {
     type: GET_ALL_CATEGORIES,
     categories: ReadableAPI.getAllCategories()
-      .then( (data) => {
-        console.log('action response', data)
-        
-      })
+      .then( response => response.json )
   }
 }
 

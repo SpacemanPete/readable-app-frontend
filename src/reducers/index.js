@@ -14,9 +14,14 @@ import {
 } from '../actions'
 
 function categories( state = {}, action ) {
+  console.info('REDUCER STATE', state)
+  console.info('ACTION FROM REDUCER', action)  
+  
+  const { categories } = action
+
   switch (action.type) {
   case GET_ALL_CATEGORIES :
-    return state
+    return categories
   default :
     return state
   }
