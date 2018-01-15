@@ -10,9 +10,6 @@ import configureStore from './utils/configureStore'
 
 const store = configureStore()
 
-console.log(store.getState())
-
-
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter><App /></BrowserRouter>

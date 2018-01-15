@@ -13,7 +13,6 @@ class CategoriesList extends Component {
   render() {
     const catList = this.props.catList || null
 
-    console.log(catList)
     return (
       <aside id="categories" >
         <ul>
