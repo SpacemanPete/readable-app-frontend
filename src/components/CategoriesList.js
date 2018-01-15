@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchCategories } from '../actions'
 import PropTypes from 'prop-types'
+import categoryPanel from '../styles/categoryPanel.css'
 
 
 class CategoriesList extends Component {
@@ -17,7 +18,7 @@ class CategoriesList extends Component {
       <aside id="categories" >
         <ul>
           {catList !== null && catList.map( (cat) => (
-            <li key={cat.name}><a href={cat.path}>{cat.name}</a></li>
+            <li className="cat-filter" key={cat.name}><a href={cat.path}>{cat.name}</a></li>
           ) )}
         </ul>
       </aside>

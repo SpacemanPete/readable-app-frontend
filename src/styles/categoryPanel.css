@@ -1,0 +1,17 @@
+/* Category Panel Styles */
+li.cat-filter a {
+  font-size: 30px;
+  text-decoration: none;
+  color: #fff;
+  display: inline-block;
+  margin: 10px 0;
+}
+li.cat-filter a:hover,
+li.cat-filter a:focus {
+  color: #c5c9a4;
+}
+
+aside#categories ul {
+  list-style-type: none;
+  margin-left: 50px;
+}
