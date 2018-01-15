@@ -39,9 +39,9 @@ export const fetchAllPosts = () => dispatch => (
     .then(posts => dispatch(receivePosts(posts)))
 )
 
-export const fetchPostsByCategory = () => dispatch => (
+export const fetchPostsByCategory = (category) => dispatch => (
   ReadableAPI
-    .getPostsByCategory()
+    .getPostsByCategory(category)
     .then(posts => dispatch(receivePosts(posts)))
 )
 
