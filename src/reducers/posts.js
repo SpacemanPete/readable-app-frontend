@@ -8,9 +8,14 @@ import {
 } from '../actions'
 
 export default function posts( state = {}, action ) {
+  const { posts } = action
+
   switch (action.type) {
   case RECEIVE_POSTS :
-    return state
+    return {
+      ...state,
+      ...posts
+    }
     
   case ADD_POST :
     return state

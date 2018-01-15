@@ -3,6 +3,7 @@ import logo from '../logo.png'
 import '../styles/App.css'
 import { Route, Link } from 'react-router-dom'
 import CategoriesList from './CategoriesList'
+import PostList from './PostList'
 
 class App extends Component {
   render() {
@@ -19,7 +20,7 @@ class App extends Component {
         <CategoriesList />
         <section id="content">
           <Route exact path="/" render={() => (
-            <p>Here we render all the post content</p>
+            <PostList  />
           )} />
           <Route path="/add-post" render={() => (
             <p>This is the Add Post dialoge</p>
