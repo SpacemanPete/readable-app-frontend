@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchCategories } from '../actions'
+import PropTypes from 'prop-types'
+
 
 class CategoriesList extends Component {
 
@@ -9,17 +11,25 @@ class CategoriesList extends Component {
   }
 
   render() {
-    const catList= this.props.catList
+    const catList = this.props.catList || null
 
     console.log(catList)
     return (
       <aside id="categories" >
         <ul>
+          {catList !== null && catList.map( (cat) => (
+            <li key={cat.name}><a href={cat.path}>{cat.name}</a></li>
+          ) )}
         </ul>
       </aside>
     )
 
   }
+}
+
+CategoriesList.propTypes = {
+  fetchCatList: PropTypes.func.isRequired,
+  catList: PropTypes.array
 }
 
 function mapStateToProps( store ) {
@@ -39,10 +49,3 @@ export default connect(
   mapStateToProps, 
   mapDispatchToProps 
 )(CategoriesList)
-
-
-// {categories.map(( cat ) => (
-//   <li key={cat}>
-//     {cat}
-//   </li>
-// ))}
