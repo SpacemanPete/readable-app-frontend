@@ -31,11 +31,18 @@ CategoriesList.propTypes = {
   catList: PropTypes.array
 }
 
-function mapStateToProps( store ) {
-  const catList = store.categories.categories
-  return {
-    catList
-  }
+function mapStateToProps({ categories }) {
+  
+  // This bit was super frustrating because initially store.categories has
+  // a prototype of 'object' instead of 'array' so I found it tricky to 
+  // convert the object into an array for mapping. 
+  // Essentially, there's a map() method used here, and one in the render
+  // function to return each list-item element. 
+  // Seems like extra work and could be unneccessarily heavy at scale...
+  const catList = Object.keys(categories).map(function(key) {
+    return categories[key]
+  });
+  return { catList }
 }
 
 function mapDispatchToProps( dispatch ) {
