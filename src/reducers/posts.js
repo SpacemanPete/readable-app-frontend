@@ -1,5 +1,5 @@
 import { 
-  GET_POSTS_BY_CATEGORY,
+  RECEIVE_POSTS,
   ADD_POST,
   EDIT_POST,
   DELETE_POST,
@@ -9,7 +9,7 @@ import {
 
 export default function posts( state = {}, action ) {
   switch (action.type) {
-  case GET_POSTS_BY_CATEGORY :
+  case RECEIVE_POSTS :
     return state
     
   case ADD_POST :
