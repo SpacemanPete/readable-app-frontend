@@ -7,6 +7,9 @@ import '../styles/PostsPanel.css'
 class PostList extends Component {
 
   componentDidMount() {
+    if ('category' in this.props.match.params ) {
+      this.props.fetchPostsByCategory(this.props.match.params.category)
+    }
     this.props.fetchPostList()
   }
 
@@ -25,8 +28,10 @@ class PostList extends Component {
   }
 }
 
-function mapStateToProps({ posts }) {
-  console.log('Posts', posts)
+function mapStateToProps({ posts }, props) {
+  console.log('props', props)
+  console.log('category', props.match.params)
+  
   
   const postList = Object.keys(posts).map(function(key) {
     return posts[key]
@@ -36,13 +41,16 @@ function mapStateToProps({ posts }) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    fetchPostList: () => dispatch(fetchAllPosts())
+    fetchPostList: () => dispatch(fetchAllPosts()),
+    fetchPostsByCategory: () => dispatch(fetchPostsByCategory())
   }
 }
 
 PostList.propTypes = {
   fetchPostList: PropTypes.func.isRequired,
-  postList: PropTypes.array
+  fetchPostsByCategory: PropTypes.func.isRequired,
+  postList: PropTypes.array,
+  match: PropTypes.object
 }
 
 export default connect( 

@@ -19,12 +19,11 @@ class App extends Component {
         </nav>
         <CategoriesList />
         <section id="content">
-          <Route exact path="/" render={() => (
-            <PostList  />
-          )} />
+          <Route exact path="/" component={PostList} />
           <Route path="/add-post" render={() => (
             <p>This is the Add Post dialoge</p>
           )} />
+          <Route path="/:category" component={PostList} />
         </section>
         <footer>
           <div className="attribution">Built by <a href='https://github.com/SpacemanPete'>SpacemanDev</a> for Udacity's React Certificate Course</div>
