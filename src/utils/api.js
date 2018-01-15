@@ -14,12 +14,22 @@ const headers = {
 // TODO: Wire up the connector functions to talk to server API and
 // wire into actions/reducers functionality
 
-
+/**
+ * 
+ *  Category related functions
+ * 
+ */
 export const getAllCategories = () =>
   fetch(`${api}/categories`, { headers })
     .then(res => res.json())
     .then(data => data.categories)
 
+
+/**
+ * 
+ *  Post related functions
+ * 
+ */
 export const getAllPosts = () =>
   fetch(`${api}/posts`, { headers })
     .then(res => res.json())
@@ -29,6 +39,15 @@ export const getPostsByCategory = (category) =>
   fetch(`${api}/${category}/posts`, { headers })
     .then(res => res.json())
     .then(data => data.posts)
+
+
+/**
+ * 
+ *  Comment related functions
+ * 
+ */
+
+
 
 // export const remove = (contact) =>
 //   fetch(`${api}/contacts/${contact.id}`, { method: 'DELETE', headers })
