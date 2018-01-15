@@ -41,7 +41,7 @@ function mapStateToProps({ categories }) {
   // Seems like extra work and could be unneccessarily heavy at scale...
   const catList = Object.keys(categories).map(function(key) {
     return categories[key]
-  });
+  })
   return { catList }
 }
 
