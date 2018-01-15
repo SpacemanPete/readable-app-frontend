@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchCategories } from '../actions'
 import PropTypes from 'prop-types'
-import '../styles/categoryPanel.css'
+import '../styles/CategoryPanel.css'
 
 
 class CategoriesList extends Component {

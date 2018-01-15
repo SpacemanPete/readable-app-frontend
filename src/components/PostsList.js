@@ -1,0 +1,5 @@
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { fetchAllPosts, fetchPostsByCategory } from '../actions'
+import PropTypes from 'prop-types'
+import '../styles/PostsPanel.css'
