@@ -5,7 +5,7 @@ import * as ReadableAPI from '../utils/api'
  *  CATEGORY RELATED ACTIONS
  * 
 */
-export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'
+export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES'
 
 export const fetchCategories = () => dispatch => (
   ReadableAPI
@@ -13,7 +13,7 @@ export const fetchCategories = () => dispatch => (
     .then(categories => dispatch(receiveCategories(categories)))
 )
 export const receiveCategories = categories => ({
-  type: RECEIVE_CATEGORIES,
+  type: GET_ALL_CATEGORIES,
   categories
 })
 
@@ -24,13 +24,13 @@ export const receiveCategories = categories => ({
  * 
  */
 
-// export const GET_POSTS_BY_CATEGORY = 'GET_POSTS_BY_CATEGORY'
-// export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-// export const ADD_POST = 'ADD_POST'
-// export const EDIT_POST = 'EDIT_POST'
-// export const DELETE_POST = 'DELETE_POST'
-// export const POST_VOTE_UP = 'POST_VOTE_UP'
-// export const POST_VOTE_DOWN = 'POST_VOTE_DOWN'
+export const GET_POSTS_BY_CATEGORY = 'GET_POSTS_BY_CATEGORY'
+export const RECEIVE_POSTS = 'RECEIVE_POSTS'
+export const ADD_POST = 'ADD_POST'
+export const EDIT_POST = 'EDIT_POST'
+export const DELETE_POST = 'DELETE_POST'
+export const POST_VOTE_UP = 'POST_VOTE_UP'
+export const POST_VOTE_DOWN = 'POST_VOTE_DOWN'
 
 // export function getPostsByCategory() {
 //   return {
@@ -90,10 +90,10 @@ export const receiveCategories = categories => ({
 //  * 
 // */
 
-// export const GET_COMMENTS_FOR_POST = 'GET_COMMENTS_FOR_POST'
-// export const ADD_COMMENT = 'ADD_COMMENT'
-// export const EDIT_COMMENT = 'EDIT_COMMENT'
-// export const DELETE_COMMENT = 'DELETE_COMMENT'
+export const GET_COMMENTS_FOR_POST = 'GET_COMMENTS_FOR_POST'
+export const ADD_COMMENT = 'ADD_COMMENT'
+export const EDIT_COMMENT = 'EDIT_COMMENT'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
 
 // export function addComment ({}) {
 //   return {
