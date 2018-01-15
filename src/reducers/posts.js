@@ -7,32 +7,28 @@ import {
   POST_VOTE_DOWN,
 } from '../actions'
 
-export default function posts( state = {}, action ) {
-  const { posts } = action
+export default function posts( posts = {}, action ) {
 
   switch (action.type) {
   case RECEIVE_POSTS :
-    return {
-      ...state,
-      ...posts
-    }
+    return action.posts
     
   case ADD_POST :
-    return state
+    return action.posts
   
   case EDIT_POST :
-    return state
+    return action.posts
   
   case DELETE_POST :
-    return state
+    return action.posts
   
   case POST_VOTE_UP :
-    return state
+    return action.posts
   
   case POST_VOTE_DOWN :
-    return state
+    return action.posts
   
   default :
-    return state
+    return posts
   }
 }
