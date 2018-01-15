@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchCategories } from '../actions'
 import PropTypes from 'prop-types'
@@ -18,7 +19,9 @@ class CategoriesList extends Component {
       <aside id="categories" >
         <ul>
           {catList.map( (cat) => (
-            <li className="cat-filter" key={cat.name}><a href={cat.path}>{cat.name}</a></li>
+            <li className="cat-filter" key={cat.name}>
+              <Link to={cat.path} >{cat.name}</Link>
+            </li>
           ))}
         </ul>
       </aside>
