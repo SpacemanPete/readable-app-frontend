@@ -20,10 +20,15 @@ export const getAllCategories = () =>
     .then(res => res.json())
     .then(data => data.categories)
 
-// export const getAll = () =>
-//   fetch(`${api}/contacts`, { headers })
-//     .then(res => res.json())
-//     .then(data => data.contacts)
+export const getAllPosts = () =>
+  fetch(`${api}/posts`, { headers })
+    .then(res => res.json())
+    .then(data => data.posts)
+    
+export const getPostsByCategory = (category) =>
+  fetch(`${api}/${category}/posts`, { headers })
+    .then(res => res.json())
+    .then(data => data.posts)
 
 // export const remove = (contact) =>
 //   fetch(`${api}/contacts/${contact.id}`, { method: 'DELETE', headers })
