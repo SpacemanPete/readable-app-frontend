@@ -1,14 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchPosts } from '../actions'
 import PropTypes from 'prop-types'
 
 class Post extends Component {
   render() {
+    const post = this.props.post
+
     return (
-      <div className='test'>POST TEST</div>
+      <div className='post'>
+        <div className='title'>{post.title}</div>
+        
+      </div>
     )
   }
 }
 
-export default connect(Post)
+Post.propTypes = {
+  post: PropTypes.object.isRequired
+}
+
+export default Post
