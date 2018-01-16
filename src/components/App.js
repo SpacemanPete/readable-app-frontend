@@ -31,7 +31,10 @@ class App extends Component {
     }))
   }
 
-
+  updateSelectedCategory(category) {
+    console.log('Cat selection:', category);
+    
+  }
 
 
   render() {
@@ -59,7 +62,7 @@ class App extends Component {
           <ul>
             {catList.map( (cat) => (
               <li className="cat-filter" key={cat.name}>
-                <Link to={cat.path}>{cat.name}</Link>
+                <Link to={cat.path} onClick={this.updateSelectedCategory(cat)}>{cat.name}</Link>
               </li>
             ))}
           </ul>
