@@ -1,28 +1,43 @@
+// Core
 import React, { Component } from 'react'
+import { Route, Link, withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
+// Visual
 import logo from '../logo.png'
 import '../styles/App.css'
-import { Route, Link, withRouter } from 'react-router-dom'
-import CategoriesList from './CategoriesList'
-import PostList from './PostList'
+
+// Redux
+import { connect } from 'react-redux'
+import { fetchCategories, fetchPosts } from '../actions'
+// Components
 import AddPost from './AddPost'
+import Post from './Post'
 
 class App extends Component {
 
   state = {
-    addPostFormVisible: false
+    addPostFormVisible: false,
+    categoryFilter: false
   }
 
+  componentDidMount() {
+    this.props.fetchCatList()
+    this.props.fetchPostList()
+  }
+  
   openAddNewPostForm() {
     this.setState(() => ({
       addPostFormVisible: true
     }))
-    console.log('form visible', this.state);
-    
   }
+
+
 
 
   render() {
     const { addPostFormVisible, openAddNewPostForm } = this.state
+    const { catList, postList } = this.props
+    
 
     return (
       <div className="App">
@@ -39,11 +54,37 @@ class App extends Component {
             Add new post
           </div>
         </nav>
-        <CategoriesList />
+        
+        <aside id="categories" >
+          <ul>
+            {catList.map( (cat) => (
+              <li className="cat-filter" key={cat.name}>
+                <Link to={cat.path}>{cat.name}</Link>
+              </li>
+            ))}
+          </ul>
+        </aside>
+
         <section id="content">
           {addPostFormVisible && <AddPost />}
-          <Route exact path="/" component={PostList} />
-          <Route path="/:category" component={PostList} />
+          <Route exact path="/" render={() => (
+            <div className='post-list'>
+              <ul>
+                {postList.map( (post) => (
+                  <li className="post-filter" key={post.title}>{post.title}</li>
+                ) )}
+              </ul>
+            </div>
+          )} />
+          <Route path="/:category" render={() => (
+            <div className='post-list'>
+              <ul>
+                {postList.map( (post) => (
+                  <li className="post-filter" key={post.title}>{post.title}</li>
+                ) )}
+              </ul>
+            </div>
+          )} />
         </section>
         <footer>
           <div className="attribution">Built by <a href='https://github.com/SpacemanPete'>SpacemanDev</a> for Udacity's React Certificate Course</div>
@@ -53,4 +94,23 @@ class App extends Component {
   }
 }
 
-export default withRouter(App)
+function mapStateToProps({ categories, posts }) {
+  return { 
+    catList: categories,
+    postList: Object.keys(posts).map(function(key) {
+      return posts[key]
+    }) 
+  }
+}
+
+function mapDispatchToProps( dispatch ) {
+  return {
+    fetchCatList: () => dispatch(fetchCategories()),
+    fetchPostList: (categoryFilter) => dispatch(fetchPosts( categoryFilter )),
+  }
+}
+
+export default connect( 
+  mapStateToProps, 
+  mapDispatchToProps 
+)(App)

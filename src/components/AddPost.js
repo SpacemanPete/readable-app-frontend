@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchPosts } from '../actions'
 import PropTypes from 'prop-types'
-import '../styles/AddPost.css'
 
 class AddPost extends Component {
   render() {

@@ -1,9 +1,0 @@
-div#add-new-post {
-  color: #476a6e;
-  display: inline-block;
-  cursor: pointer;
-}
-
-div#add-new-post:hover {
-  color: #333;
-}
