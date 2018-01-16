@@ -16,6 +16,10 @@ class PostList extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.match !== nextProps.match ) {
       this.forceUpdate()
+      // I know this isn't a great pattern to use to trigger a component to render
+      // but even after trying this I can't seem to get this guy to update 
+      // when the route changes. I can't figure out what I'm missing and I feel
+      // completely blocked until I can crack this.
     }
   }
 
