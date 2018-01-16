@@ -1,23 +1,29 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchAllPosts, fetchPostsByCategory } from '../actions'
+import { fetchPosts } from '../actions'
 import PropTypes from 'prop-types'
 import '../styles/PostsPanel.css'
 
 class PostList extends Component {
 
   componentDidMount() {
-    if ('category' in this.props.match.params ) {
-      this.props.fetchPostsByCategory(this.props.match.params.category)
+    const categoryFilter = ('category' in this.props.match.params)? this.props.match.params.category : 'all'
+    console.log('categoryFilter set to: ' + categoryFilter)
+    
+    this.props.fetchPostList(categoryFilter)
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    if (this.props.match !== nextProps.match ) {
+      this.forceUpdate()
     }
-    this.props.fetchPostList()
   }
 
   render() {
     const postList = this.props.postList || null
     
     return(
-      <div className='post-ist'>
+      <div className='post-list'>
         <ul>
           {postList !== null && postList.map( (post) => (
             <li className="post-filter" key={post.title}>{post.title}</li>
@@ -28,11 +34,7 @@ class PostList extends Component {
   }
 }
 
-function mapStateToProps({ posts }, props) {
-  console.log('props', props)
-  console.log('category', props.match.params)
-  
-  
+function mapStateToProps({ posts }) {
   const postList = Object.keys(posts).map(function(key) {
     return posts[key]
   })
@@ -41,14 +43,12 @@ function mapStateToProps({ posts }, props) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    fetchPostList: () => dispatch(fetchAllPosts()),
-    fetchPostsByCategory: () => dispatch(fetchPostsByCategory())
+    fetchPostList: (categoryFilter) => dispatch(fetchPosts( categoryFilter )),
   }
 }
 
 PostList.propTypes = {
   fetchPostList: PropTypes.func.isRequired,
-  fetchPostsByCategory: PropTypes.func.isRequired,
   postList: PropTypes.array,
   match: PropTypes.object
 }

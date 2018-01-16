@@ -24,8 +24,6 @@ export const receiveCategories = categories => ({
  * 
  */
 
-// export const GET_ALL_POSTS = 'GET_ALL_POSTS'
-// export const GET_POSTS_BY_CATEGORY = 'GET_POSTS_BY_CATEGORY'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const ADD_POST = 'ADD_POST'
 export const EDIT_POST = 'EDIT_POST'
@@ -33,27 +31,32 @@ export const DELETE_POST = 'DELETE_POST'
 export const POST_VOTE_UP = 'POST_VOTE_UP'
 export const POST_VOTE_DOWN = 'POST_VOTE_DOWN'
 
-export const fetchAllPosts = () => dispatch => (
+const fetchAllPosts = () => dispatch => (
   ReadableAPI
     .getAllPosts()
     .then(posts => dispatch(receivePosts(posts)))
 )
 
-export const fetchPostsByCategory = (category) => dispatch => (
+const fetchPostsByCategory = (category) => dispatch => (
   ReadableAPI
     .getPostsByCategory(category)
     .then(posts => dispatch(receivePosts(posts)))
 )
 
+export const fetchPosts = (categoryFilter) => {
+
+  if (categoryFilter && categoryFilter !== 'all') {
+    return fetchPostsByCategory(categoryFilter)
+  } else {
+    return fetchAllPosts()
+  }
+}
+
 export const receivePosts = posts => ({
   type: RECEIVE_POSTS,
   posts
 })
-// export function getPostsByCategory() {
-//   return {
-//     type: GET_POSTS_BY_CATEGORY
-//   }
-// }
+
 
 // export function getCommentsForPost() {
 //   return {
