@@ -1,12 +1,29 @@
 import React, { Component } from 'react'
 import logo from '../logo.png'
 import '../styles/App.css'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, withRouter } from 'react-router-dom'
 import CategoriesList from './CategoriesList'
 import PostList from './PostList'
+import AddPost from './AddPost'
 
 class App extends Component {
+
+  state = {
+    addPostFormVisible: false
+  }
+
+  openAddNewPostForm() {
+    this.setState(() => ({
+      addPostFormVisible: true
+    }))
+    console.log('form visible', this.state);
+    
+  }
+
+
   render() {
+    const { addPostFormVisible, openAddNewPostForm } = this.state
+
     return (
       <div className="App">
         <header className="App-header">
@@ -15,14 +32,17 @@ class App extends Component {
         </header>
         <nav id="main-menu" >
           <Link to="/" className="font_large" >Home</Link>
-          <Link to="add-post" className="font_large" >Add new post</Link>
+          <div id='add-new-post' 
+               className="font_large" 
+               onClick={() => this.openAddNewPostForm()} 
+          >
+            Add new post
+          </div>
         </nav>
         <CategoriesList />
         <section id="content">
+          {addPostFormVisible && <AddPost />}
           <Route exact path="/" component={PostList} />
-          <Route path="/add-post" render={() => (
-            <p>This is the Add Post dialoge</p>
-          )} />
           <Route path="/:category" component={PostList} />
         </section>
         <footer>
@@ -33,4 +53,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default withRouter(App)
